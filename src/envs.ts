@@ -14,6 +14,8 @@ export default {
         type: (process.env.DB_TYPE || 'postgres') as any,
         url: process.env.DB_URL || '',
     },
-    swapiBaseUrl: process.env.SWAPI_BASE_URL || 'https://swapi.dev/api/',
     env: process.env.NODE_ENV || 'development',
+    secrets: {
+        jwt: process.env.JWT_SECRET || 'secret',
+    }
 }

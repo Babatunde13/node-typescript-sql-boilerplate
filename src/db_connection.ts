@@ -8,7 +8,7 @@ export const createDbConnection = async () => {
         }
     } catch (e) {
         return {
-            error: e
+            error: new Error((e as Error).message)
         }
     }
 }

@@ -6,14 +6,14 @@ describe('Cache Data', () => {
         // Clear the cache before each test
         resetCache()
     })
-    
+
     it('should set and get data', () => {
         // Set data
         setKeyInCache('key', 'value')
         // Get data
         expect(getKeyInCache('key')).toBe('value')
     })
-    
+
     it('should set and get multiple data', () => {
         // Set data
         setKeyInCache('key1', 'value1')

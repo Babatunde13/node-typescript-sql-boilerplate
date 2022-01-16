@@ -1,13 +1,15 @@
 import { HttpMethod, Route } from './server.types'
 import getUsersCtrl from './controllers/get_users.ctrl'
+import requiresLogin from './middlewares/requires_login.middlewares'
+import requiresAdmin from './middlewares/requires_admin.middlewares'
 
 const { GET } = HttpMethod
 
 export const routes: Route[] = [
     {
-        path: '/api/v1/movies/',
+        path: '/api/v1/users/',
         method: GET,
-        handlers: [getUsersCtrl]
+        handlers: [requiresLogin, requiresAdmin, getUsersCtrl]
     },
     {
         path: '/api/v1/docs',

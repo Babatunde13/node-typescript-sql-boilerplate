@@ -1,5 +1,7 @@
-import { Entity, Column, getRepository } from 'typeorm'
+import { Entity, Column, getRepository, BeforeInsert } from 'typeorm'
 import BaseEntity from './base_entity.entities'
+import { hashPassword } from '../utils/hash_password.utils'
+import isError from '../utils/is_error.utils'
 
 @Entity()
 export class User extends BaseEntity {
@@ -18,6 +20,15 @@ export class User extends BaseEntity {
     @Column()
     role: Role
 
+    @BeforeInsert()
+    async hashPassword() {
+        const hash = await hashPassword(this.password)
+        if (isError(hash)) {
+            return
+        }
+        this.password = hash.data
+    }
+
     toJSON() {
         return {
             id: this.id,
@@ -33,7 +44,7 @@ export default function getUserRepository() {
     return getRepository<User>(User);
 }
 
-enum Role {
+export enum Role {
     ADMIN = 'admin',
     USER = 'user',
 }

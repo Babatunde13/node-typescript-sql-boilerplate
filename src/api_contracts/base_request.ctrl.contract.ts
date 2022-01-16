@@ -1,8 +1,10 @@
 import { Request } from 'express'
+import { User } from '../entities/users.entities'
 
 export type BaseReq = Request  & {
     params: { [key: string]: string | undefined }
     query: { [key: string]: string | undefined }
+    user: User
 }
 
 export type ReqWithParams<T> = BaseReq & T

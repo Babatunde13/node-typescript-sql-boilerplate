@@ -11,11 +11,11 @@ class Expect {
     }
     
     toBeTruthy() {
-        expect(this.obj).to.be.truthy
+        expect(this.obj).to.be.true
     }
     
     toBeFalsy() {
-        expect(this.obj).to.be.falsy
+        expect(this.obj).to.be.false
     }
     
     toBeNull() {
@@ -24,10 +24,6 @@ class Expect {
     
     toBeUndefined() {
         expect(this.obj).to.be.undefined
-    }
-    
-    toBeDefined() {
-        expect(this.obj).to.be.defined
     }
     
     toBeGreaterThan(expected: number) {
